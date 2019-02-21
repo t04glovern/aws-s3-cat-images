@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        .header {
+            text-align: center;
+            padding: 32px;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap;
+            /* IE10 */
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+
+        /* Create four equal columns that sits next to each other */
+        .column {
+            -ms-flex: 12.5%;
+            /* IE10 */
+            flex: 12.5%;
+            max-width: 12.5%;
+            padding: 0 4px;
+        }
+
+        .column img {
+            margin-top: 8px;
+            vertical-align: middle;
+        }
+
+        /* Responsive layout - makes a two column-layout instead of four columns */
+        @media only screen and (max-width: 800px) {
+            .column {
+                -ms-flex: 33%;
+                flex: 33%;
+                max-width: 33%;
+            }
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media only screen and (max-width: 600px) {
+            .column {
+                -ms-flex: 50%;
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media only screen and (max-width: 400px) {
+            .column {
+                -ms-flex: 100%;
+                flex: 100%;
+                max-width: 100%;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(242, 29, 29, 0);
+            color: white;
+            text-align: center;
+          }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div align="center">
+        <h1>
+            <font face="roboto">These Cats Do Not Exist</font>
+        </h1>
+        <a href="https://github.com/NVlabs/stylegan">https://github.com/NVlabs/stylegan</a>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <img id="1" style="width:100%">
+            <img id="2" style="width:100%">
+            <img id="3" style="width:100%">
+            <img id="4" style="width:100%">
+            <img id="5" style="width:100%">
+            <img id="6" style="width:100%">
+            <img id="7" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="8" style="width:100%">
+            <img id="9" style="width:100%">
+            <img id="10" style="width:100%">
+            <img id="11" style="width:100%">
+            <img id="12" style="width:100%">
+            <img id="13" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="14" style="width:100%">
+            <img id="15" style="width:100%">
+            <img id="16" style="width:100%">
+            <img id="17" style="width:100%">
+            <img id="18" style="width:100%">
+            <img id="19" style="width:100%">
+            <img id="20" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="21" style="width:100%">
+            <img id="22" style="width:100%">
+            <img id="23" style="width:100%">
+            <img id="24" style="width:100%">
+            <img id="25" style="width:100%">
+            <img id="26" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="27" style="width:100%">
+            <img id="28" style="width:100%">
+            <img id="29" style="width:100%">
+            <img id="30" style="width:100%">
+            <img id="31" style="width:100%">
+            <img id="32" style="width:100%">
+            <img id="33" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="34" style="width:100%">
+            <img id="35" style="width:100%">
+            <img id="36" style="width:100%">
+            <img id="37" style="width:100%">
+            <img id="38" style="width:100%">
+            <img id="39" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="40" style="width:100%">
+            <img id="41" style="width:100%">
+            <img id="42" style="width:100%">
+            <img id="43" style="width:100%">
+            <img id="44" style="width:100%">
+            <img id="45" style="width:100%">
+            <img id="46" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="47" style="width:100%">
+            <img id="48" style="width:100%">
+            <img id="49" style="width:100%">
+            <img id="50" style="width:100%">
+            <img id="51" style="width:100%">
+            <img id="52" style="width:100%">
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://twitter.com/nathangloverAUS?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @nathangloverAUS</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71336829-25"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-71336829-25');
+
+</script>
+
+<script>
+    function getImage() {
+        let url = "https://d2ph5fj80uercy.cloudfront.net/" + getRandomCat();
+        return url;
+    }
+
+    function getRandomCat() {
+        var folderNumber = Math.floor((Math.random() * 3) + 1);
+        switch (folderNumber) {
+            case 1:
+                var catNumber = Math.floor((Math.random() * 8000) + 1);
+                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
+                return path;
+                break;
+            case 2:
+                var catNumber = Math.floor((Math.random() * 8000) + 1);
+                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
+                return path;
+                break;
+            case 3:
+                var catNumber = Math.floor((Math.random() * 8000) + 1);
+                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
+                return path;
+                break;
+        }
+    }
+
+    for (i = 1; i < 53; i++) {
+        document.getElementById(i).src = getImage();
+    }
+
+</script>
+
+</html>
