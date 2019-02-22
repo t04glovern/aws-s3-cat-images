@@ -2,6 +2,8 @@
 
 Generating Cat images using StyleGAN
 
+![img/catgen](img/catgen.png)
+
 ## Create Bucket
 
 ```bash
