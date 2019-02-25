@@ -45,12 +45,12 @@ aws cloudformation describe-stacks --stack-name "cat-gen-sagemaker-role" \
 
 It will look something like `arn:aws:iam::XXXXXXXXXXXX:role/cat-gen-sagemaker-role-ExecutionRole-PZL3SA3IZPSN`.
 
-Next create a Code repository and pass it in our repo `https://github.com/t04glovern/aws-s3-cat-images`
+Next create a Code repository and pass it in the repo `ttps://github.com/t04glovern/stylegan`
 
 ``` bash
 aws sagemaker create-code-repository \
-    --code-repository-name "aws-s3-cat-images" \
-    --git-config '{"Branch":"master", "RepositoryUrl" : "https://github.com/t04glovern/aws-s3-cat-images" }'
+    --code-repository-name "t04glover-stylegan" \
+    --git-config '{"Branch":"master", "RepositoryUrl" : "https://github.com/t04glovern/stylegan" }'
 ```
 
 Finally create the notebook instance ensuring you pass in the Role ARN from before, and the default code repository we just created.
@@ -60,6 +60,40 @@ aws sagemaker create-notebook-instance \
     --notebook-instance-name "cat-gen" \
     --instance-type "ml.p2.xlarge" \
     --role-arn "arn:aws:iam::XXXXXXXXXXXXX:role/cat-gen-sagemaker-role-ExecutionRole-PZL3SA3IZPSN" \
-    --default-code-repository "aws-s3-cat-images"
+    --default-code-repository "t04glover-stylegan"
 ```
 
+Once completed, open in JupyterLab
+
+![Setup 01](img/setup-01.png)
+
+You should be presented with the StyleGAN repository that we set as the default when creating the repository. Open the catgen notebook
+
+![Setup 02](img/setup-02.png)
+
+Select the kernel to use, in our case its `conda_tensorflow_p36`
+
+![Setup 03](img/setup-03.png)
+
+Begin to execute the notebook using the controls at the top of the notebook, you might run into some issues when bringing in the role; I've found this to be a benign issue through.
+
+![Error 01](img/error-01.png)
+
+Finally after loading in the Pickle, we generate cats by running the last section over and over again.
+
+![Setup 04](img/setup-04.png)
+
+### Removing Resources
+
+Due to costs being really high, we need to destory the resources when we aren't using them. Start by shutting down the notebook (you can also delete it if you want)
+
+![Delete 01](img/delete-01.png)
+
+![Delete 02](img/delete-02.png)
+
+Finally, remove the role using the CLI
+
+```bash
+aws cloudformation delete-stack \
+    --stack-name "cat-gen-sagemaker-role"
+```
