@@ -1,6 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Notebook Instance Role for CatGen StyleGAN
 
+Parameters:
+
+  S3BucketName:
+    Type: String
+    Default: devopstar
+
 Resources:
 
   ExecutionRole:
@@ -22,7 +28,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - 's3:ListBucket'
-                Resource: 'arn:aws:s3:::devopstar'
+                Resource: !Sub arn:aws:s3:::${S3BucketName}
 
         - PolicyName: s3-get
           PolicyDocument:
@@ -32,7 +38,7 @@ Resources:
                   - 's3:GetObject'
                   - 's3:PutObject'
                   - 's3:DeleteObject'
-                Resource: 'arn:aws:s3:::devopstar/*'
+                Resource: !Sub arn:aws:s3:::${S3BucketName}/*
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
 

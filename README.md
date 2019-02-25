@@ -4,13 +4,15 @@ Generating Cat images using StyleGAN
 
 ![img/catgen](img/catgen.png)
 
-## Create Bucket
+## Website
+
+### Create Bucket
 
 ```bash
 aws s3 mb s3://thesecatsdonotexist.com
 ```
 
-## Copy in Files
+### Copy in Files
 
 ```bash
 aws s3 cp index.html s3://thesecatsdonotexist.com/index.html
@@ -20,6 +22,15 @@ aws s3 cp index.html s3://thesecatsdonotexist.com/index.html
 
 ```bash
 jupyter-notebook notebooks/catgen.ipynb
+```
+
+## StyleGAN Model Copy
+
+Obtain the cat gen model from the original repository (or you can get it from my s3 bucket [https://s3.amazonaws.com/devopstar/resources/aws-catgen/models/karras2019stylegan-cats-256x256.pkl](https://s3.amazonaws.com/devopstar/resources/aws-catgen/models/karras2019stylegan-cats-256x256.pkl)
+
+```bash
+aws s3 mb s3://devopstar
+aws s3 cp model/karras2019stylegan-cats-256x256.pkl s3://resources/aws-catgen/models/karras2019stylegan-cats-256x256.pkl
 ```
 
 ## AWS SageMaker Generate
@@ -32,6 +43,7 @@ Create the SageMaker role that we'll attach to our SageMaker instance. Unfortuna
 aws cloudformation create-stack \
     --stack-name "cat-gen-sagemaker-role" \
     --template-body file://cloudformation/sagemaker_role.yaml \
+    --parameters S3BucketName="devopstar"
     --capabilities CAPABILITY_IAM
 ```
 
@@ -45,7 +57,7 @@ aws cloudformation describe-stacks --stack-name "cat-gen-sagemaker-role" \
 
 It will look something like `arn:aws:iam::XXXXXXXXXXXX:role/cat-gen-sagemaker-role-ExecutionRole-PZL3SA3IZPSN`.
 
-Next create a Code repository and pass it in the repo `ttps://github.com/t04glovern/stylegan`
+Next create a Code repository and pass it in the repo `https://github.com/t04glovern/stylegan`
 
 ``` bash
 aws sagemaker create-code-repository \
