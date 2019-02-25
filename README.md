@@ -1,6 +1,6 @@
 # These Cats Don't Exist
 
-Generating Cat images using StyleGAN
+Generating Cat images using StyleGAN on AWS SageMaker. Developing a simple and repeatable Data Science pipeline for Generative Adversarial Network outputs
 
 ![img/catgen](img/catgen.png)
 
