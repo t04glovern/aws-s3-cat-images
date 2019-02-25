@@ -87,13 +87,21 @@ Finally after loading in the Pickle, we generate cats by running the last sectio
 
 Due to costs being really high, we need to destory the resources when we aren't using them. Start by shutting down the notebook (you can also delete it if you want)
 
+#### UI
+
 ![Delete 01](img/delete-01.png)
 
 ![Delete 02](img/delete-02.png)
 
-Finally, remove the role using the CLI
+#### CLI
 
 ```bash
+aws sagemaker delete-notebook-instance \
+    --notebook-instance-name "cat-gen"
+
+aws sagemaker delete-code-repository \
+    --code-repository-name "t04glover-stylegan"
+
 aws cloudformation delete-stack \
     --stack-name "cat-gen-sagemaker-role"
 ```
