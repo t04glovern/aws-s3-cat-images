@@ -43,7 +43,7 @@ Create the SageMaker role that we'll attach to our SageMaker instance. Unfortuna
 aws cloudformation create-stack \
     --stack-name "cat-gen-sagemaker-role" \
     --template-body file://cloudformation/sagemaker_role.yaml \
-    --parameters S3BucketName="devopstar"
+    --parameters ParameterKey=S3BucketName,ParameterValue="devopstar" \
     --capabilities CAPABILITY_IAM
 ```
 
