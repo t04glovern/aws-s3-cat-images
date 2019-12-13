@@ -92,7 +92,7 @@
         </h1>
         Learn More: <a href="http://devopstar.com/2019/02/25/generating-cats-with-stylegan-on-aws-sagemaker/">Generating Cats with StyleGAN on AWS SageMaker</a>
         <hr>
-        <i>Now includes stylegan2 images!</i>
+        <i>Enable BOTH stylegan1 & 2 results:</i><input type="checkbox" id="weirdCheckbox"> | <button onclick="getRandomCats()">Refresh</button>
     </div>
 
     <div class="row">
@@ -187,40 +187,66 @@
 </script>
 
 <script>
+    // Get the checkbox
+    var checkBox = document.getElementById("weirdCheckbox");
+
     function getImage() {
         let url = "https://d2ph5fj80uercy.cloudfront.net/" + getRandomCat();
         return url;
     }
 
     function getRandomCat() {
-        var folderNumber = Math.floor((Math.random() * 4) + 1);
+        var folderNumber = Math.floor((Math.random() * 6) + 1);
         switch (folderNumber) {
             case 1:
-                var catNumber = Math.floor((Math.random() * 8000) + 1);
-                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
-                return path;
+                var catNumber = Math.floor((Math.random() * 5000) + 1);
+                if (checkBox.checked == true){
+                    return "01/cat" + catNumber + ".jpg";
+                } else {
+                    return "04/cat" + catNumber + ".jpg";
+                }
                 break;
             case 2:
-                var catNumber = Math.floor((Math.random() * 8000) + 1);
-                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
-                return path;
+                var catNumber = Math.floor((Math.random() * 5000) + 1);
+                if (checkBox.checked == true){
+                    return "02/cat" + catNumber + ".jpg";
+                } else {
+                    return "05/cat" + catNumber + ".jpg";
+                }
                 break;
             case 3:
-                var catNumber = Math.floor((Math.random() * 8000) + 1);
-                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
-                return path;
+                var catNumber = Math.floor((Math.random() * 5000) + 1);
+                if (checkBox.checked == true){
+                    return "03/cat" + catNumber + ".jpg";
+                } else {
+                    return "06/cat" + catNumber + ".jpg";
+                }
                 break;
             case 4:
                 var catNumber = Math.floor((Math.random() * 5000) + 1);
-                var path = "0" + folderNumber + "/cat" + catNumber + ".jpg";
+                var path = "04/cat" + catNumber + ".jpg";
+                return path;
+                break;
+            case 5:
+                var catNumber = Math.floor((Math.random() * 5000) + 1);
+                var path = "05/cat" + catNumber + ".jpg";
+                return path;
+                break;
+            case 6:
+                var catNumber = Math.floor((Math.random() * 5000) + 1);
+                var path = "06/cat" + catNumber + ".jpg";
                 return path;
                 break;
         }
     }
 
-    for (i = 1; i < 53; i++) {
-        document.getElementById(i).src = getImage();
+    function getRandomCats() {
+        for (i = 1; i < 53; i++) {
+            document.getElementById(i).src = getImage();
+        }
     }
+
+    getRandomCats()
 
 </script>
 
